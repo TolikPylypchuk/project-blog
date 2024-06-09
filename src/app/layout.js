@@ -1,8 +1,15 @@
 import React from "react";
+import { cookies } from "next/headers";
 import { Work_Sans, Spline_Sans_Mono } from "next/font/google";
 import clsx from "clsx";
 
-import { BLOG_TITLE, LIGHT_TOKENS, DARK_TOKENS } from "@/constants";
+import {
+  BLOG_TITLE,
+  LIGHT_TOKENS,
+  DARK_TOKENS,
+  THEME_COOKIE_NAME,
+  THEME_LIGHT,
+} from "@/constants";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -27,8 +34,8 @@ const monoFont = Spline_Sans_Mono({
 });
 
 function RootLayout({ children }) {
-  // TODO: Dynamic theme depending on user preference
-  const theme = "light";
+  const savedTheme = cookies().get(THEME_COOKIE_NAME);
+  const theme = savedTheme?.value || THEME_LIGHT;
 
   return (
     <RespectMotionPreferences>
