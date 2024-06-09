@@ -76,7 +76,15 @@ function DivisionGroupsDemo({
           <p className={styles.remainderHeading}>Remainder Area</p>
 
           {range(remainder).map((index) => {
-            return <div key={index} className={styles.item} />;
+            const layoutIndex = numOfGroups * numOfItemsPerGroup + index;
+            const layoutId = `${layoutIdPrefix}-${layoutIndex}`;
+            return (
+              <motion.div
+                layoutId={layoutId}
+                key={layoutId}
+                className={styles.item}
+              />
+            );
           })}
         </div>
       )}
