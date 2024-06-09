@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import BlogHero from "@/components/BlogHero";
@@ -31,6 +32,9 @@ async function BlogPost({ params }) {
           source={content}
           components={{
             pre: CodeSnippet,
+            DivisionGroupsDemo: dynamic(() =>
+              import("@/components/DivisionGroupsDemo")
+            ),
           }}
         />
       </div>
